@@ -27,7 +27,7 @@ const sundaeOptions = JSON.parse(sundaeOptionsRaw);
 console.log(sundaeOptions);
 // console.log(sundaeOptionsRaw);
 
-// Routes
+/** Routes */
 app.get("/scoops", (req, res) => {
   res.json(sundaeOptions.iceCreamFlavors);
 });
