@@ -1,0 +1,6 @@
+getByRole(query, {name:""})
+
+The name for:
+ input   ===   label text
+
+ images  ===   altText

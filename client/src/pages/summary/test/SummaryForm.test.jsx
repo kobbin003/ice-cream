@@ -7,7 +7,7 @@ import {
   waitFor,
 } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import SummaryForm from "../summary/SummaryForm.jsx";
+import SummaryForm from "../SummaryForm.jsx";
 
 afterAll(cleanup);
 describe("about summary form", () => {
