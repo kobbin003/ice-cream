@@ -1,0 +1,36 @@
+1. install msw.
+
+2. Define the mock/ mock the API's :
+
+We would do this inside src/mocks/handler.js
+
+handler.js -> 
+import { rest } from 'msw';
+rest.Http_action('url', (req, res, ctx) => {
+    return res(
+        ctx.status(),
+        ctx.send(),
+    )
+})
+
+3. set mock server :
+
+we would do this inside src/mocks/server.js
+
+server.js ->
+import {setupServer} from 'msw/node'
+import {handlers} from './handlers.js'
+
+const server = setupServer(...handlers)
+
+4. set the setupTests.js:
+
+import {server} from './mocks/server.js
+
+// Establish API mocking before all tests.
+beforeAll(() => server.listen())
+// Reset any request handlers that we may add during the tests,
+// so they don't affect other tests.
+afterEach(() => server.resetHandlers())
+// Clean up after the tests are finished.
+afterAll(() => server.close())

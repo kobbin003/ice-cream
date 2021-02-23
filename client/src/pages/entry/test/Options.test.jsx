@@ -1,5 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { findAllByRole, render, screen } from "@testing-library/react";
 import Options from "../Options";
 
 test("displays image for each scoop from server", async () => {
@@ -14,4 +13,19 @@ test("displays image for each scoop from server", async () => {
   // get imges altText
   const altTexts = scoopImages.map((image) => image.alt);
   expect(altTexts).toEqual(["Mint Chip scoop", "Vanilla scoop"]);
+});
+
+test("should display images for each topings from the server", async () => {
+  render(<Options optionType="toppings" />);
+
+  //find images
+  const toppingsImages = await screen.findAllByRole("img", {
+    name: /topping$/i,
+  });
+  expect(toppingsImages).toHaveLength(2);
+  // toppingsImages.forEach((image) => console.log(image));
+
+  // get images text
+  const toppingsAltTexts = toppingsImages.map((image) => image.alt);
+  expect(toppingsAltTexts).toEqual(["Hot fudge topping", "Mochi topping"]);
 });

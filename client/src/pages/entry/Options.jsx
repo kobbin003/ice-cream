@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ScoopOptions from "./ScoopOptions";
 import ToppingOptions from "./ToppingOptions";
-import { Row } from "react-bootstrap";
+import { Alert, Row } from "react-bootstrap";
+import AlertBanner from "../common/AlertBanner";
 const Options = ({ optionType }) => {
   const [items, setItems] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
     const config = {
       method: "get",
@@ -16,18 +18,25 @@ const Options = ({ optionType }) => {
       .catch((error) => {
         // TODO
         // console.error(error);
+        setErrorMessage(error.response.data.errorMessage);
       });
     return () => {};
   }, []);
 
   const ItemComponent = optionType === "scoops" ? ScoopOptions : ToppingOptions;
-
+  // if (errorMessage) return <AlertBanner />;
+  if (errorMessage) return <AlertBanner message={errorMessage} />;
   return (
-    <Row>
-      {items.map((item, index) => (
-        <ItemComponent key={index} name={item.name} path={item.imagePath} />
-      ))}
-    </Row>
+    <div>
+      {/* <h2>{optionType}</h2>
+      <p>${optionType === "scoops" ? "2.00" : "1.50"} each</p>
+      <p></p> */}
+      <Row>
+        {items.map((item, index) => (
+          <ItemComponent key={index} name={item.name} path={item.imagePath} />
+        ))}
+      </Row>
+    </div>
   );
 };
 

@@ -22,9 +22,23 @@ export const handlers = [
   }),
 
   // Handles a GET/toppings request
-  // rest.get("http:localhost:3030/toppings", (req, res, ctx) => {
-  //   return res(ctx.status(200), ctx.json(sundaeOptions.toppings));
-  // }),
+  rest.get("http:localhost:3030/toppings", (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json([
+        {
+          name: "Hot fudge",
+          imagePath: "/images/hot-fudge.png",
+        },
+        {
+          name: "Mochi",
+          imagePath: "/images/mochi.png",
+        },
+      ])
+    );
+  }),
+
+  // Handle errors
 
   // // Handle a POST/order request
   // rest.post("http:localhost:3030/order", (req, res, ctx) => {
