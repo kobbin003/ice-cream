@@ -20,7 +20,6 @@ const ScoopOptions = ({ name, path, optionType, updateItemCount }) => {
           className="w-75"
         />
         <Form.Group as={Row} className="mt-1">
-          {/* <Form.Label column xs="6" className="text-right"> */}
           <Form.Label htmlFor={optionType}>{name}</Form.Label>
           <Col className="text-left">
             <Form.Control
