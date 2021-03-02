@@ -39,9 +39,6 @@ const ToppingOptions = ({ name, path, optionType, updateItemCount }) => {
                 type="checkbox"
                 onClick={handleCheckboxClick}
                 value={selected}
-                // checked={selected}
-                // defaultChecked={selected}
-                // value={selected}
                 defaultChecked={selected}
                 aria-checked={selected}
               />
