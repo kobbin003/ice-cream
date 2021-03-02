@@ -1,8 +1,11 @@
-import { findAllByRole, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
+import CustomOrderDetailProvider from "../../../contexts/OrderDetails";
 import Options from "../Options";
 
 test("displays image for each scoop from server", async () => {
-  render(<Options optionType="scoops" />);
+  render(<Options optionType="scoops" />, {
+    wrapper: CustomOrderDetailProvider,
+  });
   //   expect(screen.getByText(/mint chip/i)).toBeInTheDocument();
 
   /** asynchronous-rendering-test: use find and await */
@@ -16,7 +19,9 @@ test("displays image for each scoop from server", async () => {
 });
 
 test("should display images for each topings from the server", async () => {
-  render(<Options optionType="toppings" />);
+  render(<Options optionType="toppings" />, {
+    wrapper: CustomOrderDetailProvider,
+  });
 
   //find images
   const toppingsImages = await screen.findAllByRole("img", {

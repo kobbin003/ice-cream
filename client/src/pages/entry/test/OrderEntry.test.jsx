@@ -1,9 +1,10 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import Options from "../Options";
+import {  render, screen, waitFor } from "@testing-library/react";
+// import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { server } from "../../../mocks/server";
 import OrderEntry from "../OrderEntry";
+import CustomOrderDetailProvider from "../../../contexts/OrderDetails";
+
 
 test.only("should show alert when there is error", async () => {
   /** reseting handler to deal with error */
@@ -27,7 +28,7 @@ test.only("should show alert when there is error", async () => {
       );
     })
   );
-  render(<OrderEntry />);
+  render(<OrderEntry />, { wrapper: CustomOrderDetailProvider });
   await waitFor(async () => {
     const alertItems = await screen.findAllByRole("alert");
     expect(alertItems).toHaveLength(2);
